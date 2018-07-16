@@ -8,8 +8,7 @@ import {
   ConnectedRouter,
   routerMiddleware
 } from "react-router-redux";
-
-
+import myLogger from './middleware/custom';
 
 import './index.css';
 
@@ -21,12 +20,13 @@ import Cart from './components/Cart';
 
 
 const history = createHistory();
-const middleware = routerMiddleware(history);
-
-const cartStore = createStore(combineReducers({
+const routermdl = routerMiddleware(history);
+const middleware = applyMiddleware(routermdl,myLogger);
+const reducer = combineReducers({
   cart,
   items
-},applyMiddleware(middleware)));
+});
+const cartStore = createStore(reducer,middleware);
 
 ReactDOM.render(<Provider store={cartStore}>
                   <ConnectedRouter history={history}>

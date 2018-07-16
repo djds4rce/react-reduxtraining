@@ -5,7 +5,7 @@ import {bindActionCreators} from 'redux';
 import '../App.css';
 import {removeFromCart} from "../actions/actions";
 
-class Cart extends Component {
+export class Cart extends Component {
   render() {
     return (
         <div className='cart-list'>
@@ -19,7 +19,7 @@ class Cart extends Component {
         </div>
         { 
           this.props.cart.map((object, i)=>{
-              var total = object.price*object.qnt;
+
         return  <div className='item' key={object.id}> 
                   <div className='item-coloumn item-info'>{object.name}</div>
                   <div className='item-coloumn item-info'>{object.qnt}</div>

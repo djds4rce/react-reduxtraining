@@ -9,10 +9,7 @@ import ItemList from './components/ItemList';
 import Cart from './components/Cart';
 
 
-class App extends Component {
-  constructor(props) {
-    super(props);
-  }
+export class App extends Component {
   render() {
     return (
       <div className="App">
@@ -24,5 +21,6 @@ class App extends Component {
     );
   }
 }
+
 
 export default connect()(App);

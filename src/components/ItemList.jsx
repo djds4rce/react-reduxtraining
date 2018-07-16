@@ -6,7 +6,7 @@ import '../App.css';
 import {addToCart} from "../actions/actions"; 
 
 
-class ItemList extends Component {
+export class ItemList extends Component {
   render() {
     return (
         <div className='item-list'>

@@ -6,7 +6,7 @@ export const cart = (state = [], action) => {
         case actionList.ADD_TO_CART:
             let updateCart = state.slice();
             let selectedCartItem = updateCart.find((tupple) => {
-                return tupple.id === action.item.id;
+                return tupple.itemid === action.item.id;
             });
             if (selectedCartItem === undefined) {
                 let item = action.item;
@@ -14,6 +14,7 @@ export const cart = (state = [], action) => {
                     name: item.name,
                     price: item.price,
                     qnt: 1,
+                    itemid:item.id,
                     id: nextCartItemId++
                 }
                 updateCart.push(cartItem);
@@ -23,7 +24,7 @@ export const cart = (state = [], action) => {
             return updateCart;
         case actionList.REMOVE_FROM_CART:
             return state.filter((tupple)=>{
-                return tupple.id !== action.id;
+                return tupple.itemid !== action.id;
             });
         default:
             return state;

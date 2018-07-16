@@ -6,7 +6,7 @@ import '../App.css';
 import {addItem} from '../actions/actions'
 import {bindActionCreators} from 'redux';
 
-class ItemAdd extends Component {
+export class ItemAdd extends Component {
   constructor(props){
     super(props);
     this.state = {name:'',price:0};
