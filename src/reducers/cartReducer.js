@@ -1,34 +1,38 @@
-import {actionList} from '../actions/actionList';
+import {
+    actionList
+} from '../actions/actionList';
 
 let nextCartItemId = 0;
 export const cart = (state = [], action) => {
     switch (action.type) {
         case actionList.ADD_TO_CART:
-            let updateCart = state.slice();
-            let selectedCartItem = updateCart.find((tupple) => {
-                return tupple.itemid === action.item.id;
+            let selectedCartItem = false;
+            let updatedCart = state.map(function (tupple) {
+                if (tupple.itemid == action.item.id) {
+                    selectedCartItem = true;
+                    return Object.assign({}, tupple, {
+                        qnt: tupple.qnt + 1
+                    });
+                }
+                return tupple;
             });
-            if (selectedCartItem === undefined) {
+            if (!selectedCartItem) {
                 let item = action.item;
                 let cartItem = {
                     name: item.name,
                     price: item.price,
                     qnt: 1,
-                    itemid:item.id,
+                    itemid: item.id,
                     id: nextCartItemId++
                 }
-                updateCart.push(cartItem);
-            } else {
-                selectedCartItem.qnt = selectedCartItem.qnt + 1;
+                updatedCart.push(cartItem);
             }
-            return updateCart;
+            return updatedCart;
         case actionList.REMOVE_FROM_CART:
-            return state.filter((tupple)=>{
+            return state.filter((tupple) => {
                 return tupple.itemid !== action.id;
             });
         default:
             return state;
     }
 };
-
-
